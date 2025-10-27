@@ -139,8 +139,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-   "madicala-backend.onrender.com"    # Replace with your actual Render domain
-    "https://madicala.vercel.app",,     # Allow Vercel to POST safely
+   "madicala-backend.onrender.com" ,   # Replace with your actual Render domain
+    "https://madicala.vercel.app",   # Allow Vercel to POST safely
 ]
 
 # ---------------------------------------------------------
