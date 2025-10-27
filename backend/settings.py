@@ -135,12 +135,12 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True  # ✅ Allow all for now
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",                # Local React
-    "https://your-frontend.vercel.app",     # Replace with your actual Vercel domain
+    " https://madicala.vercel.app",     # Replace with your actual Vercel domain
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://your-backend.onrender.com",    # Replace with your actual Render domain
-    "https://your-frontend.vercel.app",     # Allow Vercel to POST safely
+   "madicala-backend.onrender.com"    # Replace with your actual Render domain
+    "https://madicala.vercel.app",,     # Allow Vercel to POST safely
 ]
 
 # ---------------------------------------------------------
