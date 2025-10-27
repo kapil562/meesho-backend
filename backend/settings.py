@@ -21,6 +21,7 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ["*"]  # ✅ For development and Render live domain
 
+
 # ---------------------------------------------------------
 # INSTALLED_APPS
 # ---------------------------------------------------------
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     "shop",
 ]
 
+
 # ---------------------------------------------------------
 # MIDDLEWARE
 # ---------------------------------------------------------
@@ -47,7 +49,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
 
-    # Whitenoise for static file serving on Render
+    # ✅ Whitenoise for static file serving on Render
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -132,15 +134,16 @@ REST_FRAMEWORK = {
 # ---------------------------------------------------------
 # CORS SETTINGS (for React frontend + Render + Vercel)
 # ---------------------------------------------------------
-CORS_ALLOW_ALL_ORIGINS = True  # ✅ Allow all for now
+CORS_ALLOW_ALL_ORIGINS = True  # ✅ Safe for dev, restrict later
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",                # Local React
-    " https://madicala.vercel.app",     # Replace with your actual Vercel domain
+    "http://localhost:5173",              # Local React
+    "https://madicala.vercel.app",        # ✅ Fixed extra space
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-   "madicala-backend.onrender.com" ,   # Replace with your actual Render domain
-    "https://madicala.vercel.app",   # Allow Vercel to POST safely
+    "https://madicala-backend.onrender.com",  # ✅ Render backend URL
+    "https://madicala.vercel.app",            # ✅ Vercel frontend
 ]
 
 # ---------------------------------------------------------
