@@ -19,8 +19,7 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ["*"]  # ✅ For development and Render live domain
-
+ALLOWED_HOSTS = ["*"]  # ✅ Safe for Render deployment
 
 # ---------------------------------------------------------
 # INSTALLED_APPS
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     # Local apps
     "shop",
 ]
-
 
 # ---------------------------------------------------------
 # MIDDLEWARE
@@ -111,7 +109,7 @@ USE_I18N = True
 USE_TZ = True
 
 # ---------------------------------------------------------
-# STATIC & MEDIA FILES (for Render + local)
+# STATIC & MEDIA FILES
 # ---------------------------------------------------------
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
@@ -132,17 +130,17 @@ REST_FRAMEWORK = {
 }
 
 # ---------------------------------------------------------
-# CORS SETTINGS (for React frontend + Render + Vercel)
+# CORS & CSRF (for React frontend + Render)
 # ---------------------------------------------------------
-CORS_ALLOW_ALL_ORIGINS = True  # ✅ Safe for dev, restrict later
+CORS_ALLOW_ALL_ORIGINS = True  # ✅ OK for development
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",              # Local React
-    "https://madicala.vercel.app",        # ✅ Fixed extra space
+    "https://madicala.vercel.app",        # ✅ Your Vercel frontend
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://madicala-backend.onrender.com",  # ✅ Render backend URL
+    "https://madicala-backend.onrender.com",  # ✅ Render backend
     "https://madicala.vercel.app",            # ✅ Vercel frontend
 ]
 

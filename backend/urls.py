@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.http import JsonResponse
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 # -------------------- ROOT HEALTH CHECK --------------------
@@ -25,6 +27,12 @@ urlpatterns = [
     # API routes (shop app)
     path("api/", include("shop.urls")),
 ]
+
+
+# -------------------- MEDIA FILE SERVING --------------------
+# ✅ Serve media files (uploaded images) in development & Render
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # -------------------- ADMIN PANEL BRANDING --------------------
