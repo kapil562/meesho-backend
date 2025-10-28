@@ -32,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
             "image",
             "image_url",
             "image_file",
-            "available_sizes",  # ✅ replaces 'sizes'
+            "available_sizes",
             "sold_by",
             "occasion",
             "color",

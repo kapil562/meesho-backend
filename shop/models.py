@@ -11,7 +11,7 @@ class Product(models.Model):
     image_url = models.URLField(blank=True, null=True, help_text="External image link (optional)")
     image_file = models.ImageField(upload_to="products/", blank=True, null=True, help_text="Upload product image")
 
-    # Size selection (will appear as input fields in admin)
+    # Size options
     size_s = models.BooleanField(default=False)
     size_m = models.BooleanField(default=False)
     size_l = models.BooleanField(default=False)
@@ -26,13 +26,13 @@ class Product(models.Model):
 
     sold_by = models.CharField(max_length=255, default="Unknown Seller", help_text="Store or seller name")
 
-    # Product Highlights (user can type manually)
+    # Highlights
     occasion = models.CharField(max_length=100, blank=True, help_text="Example: Casual")
     color = models.CharField(max_length=100, blank=True, help_text="Example: Red / Random")
     fit_shape = models.CharField(max_length=100, blank=True, help_text="Example: Regular")
     pattern = models.CharField(max_length=100, blank=True, help_text="Example: Printed")
 
-    # Product Details (manual text input)
+    # Details
     fabric = models.CharField(max_length=100, blank=True, help_text="Example: Cotton Blend")
     sleeve_length = models.CharField(max_length=100, blank=True, help_text="Example: Long Sleeves")
     country_of_origin = models.CharField(max_length=100, default="India")
@@ -131,9 +131,17 @@ class UPIConfig(models.Model):
 
 # -------------------- TRANSACTION --------------------
 class Transaction(models.Model):
+    STATUS_CHOICES = [
+        ("pending", "Pending"),
+        ("success", "Success"),
+        ("failed", "Failed"),
+    ]
+
     product_name = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_method = models.CharField(max_length=50)
+    transaction_id = models.CharField(max_length=100, unique=True, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
     transaction_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -142,4 +150,4 @@ class Transaction(models.Model):
         verbose_name_plural = "Transactions"
 
     def __str__(self):
-        return f"{self.product_name} - ₹{self.amount}"
+        return f"{self.product_name} - ₹{self.amount} ({self.status})"

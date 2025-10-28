@@ -1,5 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import verify_transaction
+
 from .views import (
     ProductViewSet,
     OrderViewSet,
@@ -27,4 +29,7 @@ urlpatterns = [
 
     # 🔹 Generate UPI payment link dynamically for given order
     path("generate-upi/<str:order_id>/", generate_upi, name="generate_upi"),
+
+    path("verify-transaction/<str:transaction_id>/", verify_transaction, name="verify_transaction"),
+
 ]
